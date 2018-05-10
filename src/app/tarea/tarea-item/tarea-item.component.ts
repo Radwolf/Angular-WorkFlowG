@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input, EventEmitter, Output, OnChanges } from '@angular/core';
+import { Tarea } from '../shared/tarea';
 
 @Component({
   selector: 'wfg-tarea-item',
@@ -7,9 +8,15 @@ import { Component, OnInit } from '@angular/core';
 })
 export class TareaItemComponent implements OnInit {
 
+  @Input() tarea: Tarea;
+  @Output() notify: EventEmitter<Tarea> = new EventEmitter<Tarea>();
+
   constructor() { }
 
   ngOnInit() {
   }
 
+  onSuccess(){
+    this.notify.emit(this.tarea);
+  }
 }

@@ -12,7 +12,7 @@
     </tr>
   </thead>
   <tbody>
-    <tr *ngFor="let tarea of tareas">
+    <tr *ngFor="let tarea of tareas" (click)="onSelect(tarea)">
       <th scope="row">{{tarea.codigo}}</th>
       <td>{{tarea.descripcion}}</td>
       <td>{{tarea.aplicacion}}</td>
