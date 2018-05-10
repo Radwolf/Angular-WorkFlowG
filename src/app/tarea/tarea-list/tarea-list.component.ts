@@ -18,7 +18,13 @@ export class TareaListComponent implements OnInit, OnChanges {
 
   ngOnInit() {
     console.log(`OnInit`);
-    this.tareas = this.tareaService.getTareas();
+    //this.tareas = this.tareaService.getTareas();
+    this.tareaService.getTareasFb().subscribe(tareas => {
+        this.tareas = tareas;
+    });
+    this.tareaService.getPost().subscribe(posts => {
+      console.log(posts);
+    });
   }
 
   ngOnChanges() {
