@@ -9,6 +9,7 @@ import { AppRoutingModule } from './/app-routing.module';
 import { AngularFireModule } from 'angularfire2';
 import { environment } from '../environments/environment';
 import { AngularFirestore } from 'angularfire2/firestore';
+import { SharedPipesModule } from './shared/pipes/shared-pipes.module';
 
 @NgModule({
   declarations: [
@@ -20,7 +21,8 @@ import { AngularFirestore } from 'angularfire2/firestore';
     NgbModule.forRoot(),
     AppRoutingModule,
     HttpClientModule,
-    AngularFireModule.initializeApp(environment.firebase)
+    AngularFireModule.initializeApp(environment.firebase),
+    SharedPipesModule
   ],
   providers: [AngularFirestore],
   bootstrap: [AppComponent]
