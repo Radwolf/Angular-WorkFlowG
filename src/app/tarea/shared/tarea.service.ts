@@ -19,7 +19,14 @@ export class TareaService {
   constructor(private afs: AngularFirestore, private http: HttpClient) { 
     let uid = localStorage.getItem('uid');
     this.tareasCollection = this.afs.collection<Tarea>(this.path);
-    this.tareas = this.tareasCollection.valueChanges();
+    //this.tareas = this.tareasCollection.valueChanges();
+    this.tareas = this.tareasCollection.snapshotChanges().map(cambios => {
+      return cambios.map(c => {
+        const data = c.payload.doc.data() as Tarea;
+        const id = c.payload.doc.id;
+        return {id, ...data};
+      });
+    });
   }
 
   getTareasFb(){
@@ -32,5 +39,17 @@ export class TareaService {
 
   getPost(){
     return this.http.get('http://jsonplaceholder.typicode.com/posts/1/comments');
+  }
+
+  insertarTarea(tarea: Tarea){
+    this.tareasCollection.add(tarea);
+  }
+
+  updateTarea(id: string, tarea: Tarea): Promise<void> {
+    return this.tareasCollection.doc(id).update(tarea).then(() => {console.log('update')});
+  }
+
+  delete(id: string){
+    this.tareasCollection.doc(id).delete();
   }
 }

@@ -1,27 +1,40 @@
-<table class="table">
-  <thead>
-    <tr>
-      <th scope="col">Código</th>
-      <th scope="col">Descripción</th>
-      <th scope="col">Aplicación</th>
-      <th scope="col">Tipo</th>
-      <th scope="col">Estado</th>
-      <th scope="col">Fecha alta</th>
-      <th scope="col">Usuario</th>
-      <th scope="col">Despliegue</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr *ngFor="let tarea of tareas" (click)="onSelect(tarea)">
-      <th scope="row">{{tarea.codigo}}</th>
-      <td>{{tarea.descripcion}}</td>
-      <td>{{tarea.aplicacion}}</td>
-      <td>{{tarea.tipo}}</td>
-      <td>{{tarea.estado | estadoTarea}}</td>
-      <td>{{tarea.fechaAlta}}</td>
-      <td>{{tarea.usuario}}</td>
-      <td>{{tarea.despliegue}}</td>
-    </tr>
-  </tbody>
-</table>
+<div class="row py-md-3">
+  <div class="col-0 col-xl-1"></div>
+  <div class="col-12 col-xl-10">
+    <div class="card">
+      <div class="card-header">
+        Tarea
+      </div>
+      <div class="card-body">
+        <table class="table">
+          <thead>
+            <tr>
+              <th scope="col">Código</th>
+              <th scope="col">Descripción</th>
+              <th scope="col">Aplicación</th>
+              <th scope="col">Tipo</th>
+              <th scope="col">Estado</th>
+              <th scope="col">Fecha alta</th>
+              <th scope="col">Usuario</th>
+              <th scope="col">Despliegue</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let tarea of tareas" (click)="onSelect(tarea)">
+              <th scope="row">{{tarea.codigo}}</th>
+              <td>{{tarea.descripcion}}</td>
+              <td>{{tarea.aplicacion}}</td>
+              <td>{{tarea.tipo}}</td>
+              <td>{{tarea.estado | estadoTarea}}</td>
+              <td>{{tarea.fechaAlta}}</td>
+              <td>{{tarea.usuario}}</td>
+              <td>{{tarea.despliegue}}</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+  <div class="col-0 col-xl-1"></div>
+</div>
 <!--pre>{{tareas | json}}</pre-->
