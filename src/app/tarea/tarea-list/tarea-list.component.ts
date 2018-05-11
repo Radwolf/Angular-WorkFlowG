@@ -28,7 +28,7 @@ export class TareaListComponent implements OnInit, OnChanges {
   }
 
   ngOnChanges() {
-    console.log(`OnChanges`)
+    console.log(`OnChanges`);
   }
 
   onSelect(tarea: Tarea){

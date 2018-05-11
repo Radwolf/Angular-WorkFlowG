@@ -19,4 +19,8 @@ export class TareaItemComponent implements OnInit {
   onSuccess(){
     this.notify.emit(this.tarea);
   }
+
+  onReturn(){
+    this.notify.emit(this.tarea);
+  }
 }
