@@ -9,6 +9,7 @@ import { TareaService } from './shared/tarea.service';
 import { EstadoTareaPipe } from '../shared/pipes/estado-tarea.pipe';
 import { SharedPipesModule } from '../shared/pipes/shared-pipes.module';
 import { FormsModule } from '@angular/forms';
+import { TareaPrintComponent } from './tarea-print/tarea-print.component';
 
 @NgModule({
   imports: [
@@ -18,6 +19,6 @@ import { FormsModule } from '@angular/forms';
     FormsModule
   ],
   providers: [TareaService],
-  declarations: [TareaComponent, TareaListComponent, TareaItemComponent]
+  declarations: [TareaComponent, TareaListComponent, TareaItemComponent, TareaPrintComponent]
 })
 export class TareaModule { }

@@ -13,6 +13,7 @@ import { TAREAS } from './mock-tarea';
 export class TareaService {
 
   tareasCollection: AngularFirestoreCollection<Tarea>;
+  tareaDoc: AngularFirestoreDocument<Tarea>;
   tareas: Observable<Tarea[]>;
   readonly path = 'tarea';
 
@@ -35,6 +36,11 @@ export class TareaService {
 
   getTareas(){
     return TAREAS;
+  }
+
+  getTarea(id: string){
+    this.tareaDoc = this.afs.doc<Tarea>(`${this.path}/${id}`);
+    return this.tareaDoc.valueChanges();
   }
 
   getPost(){

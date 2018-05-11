@@ -17,18 +17,22 @@
               <th scope="col">Fecha alta</th>
               <th scope="col">Usuario</th>
               <th scope="col">Despliegue</th>
+              <th></th>
             </tr>
           </thead>
           <tbody>
-            <tr *ngFor="let tarea of tareas" (click)="onSelect(tarea)">
-              <th scope="row">{{tarea.codigo}}</th>
-              <td>{{tarea.descripcion}}</td>
-              <td>{{tarea.aplicacion}}</td>
-              <td>{{tarea.tipo}}</td>
-              <td>{{tarea.estado | estadoTarea}}</td>
-              <td>{{tarea.fechaAlta}}</td>
-              <td>{{tarea.usuario}}</td>
-              <td>{{tarea.despliegue}}</td>
+            <tr *ngFor="let tarea of tareas">
+              <th scope="row" (click)="onSelect(tarea)">{{tarea.codigo}}</th>
+              <td (click)="onSelect(tarea)">{{tarea.descripcion}}</td>
+              <td (click)="onSelect(tarea)">{{tarea.aplicacion}}</td>
+              <td (click)="onSelect(tarea)">{{tarea.tipo}}</td>
+              <td (click)="onSelect(tarea)">{{tarea.estado | estadoTarea}}</td>
+              <td (click)="onSelect(tarea)">{{tarea.fechaAlta}}</td>
+              <td (click)="onSelect(tarea)">{{tarea.usuario}}</td>
+              <td (click)="onSelect(tarea)">{{tarea.despliegue}}</td>
+              <td>
+                <button type="button" class="btn btn-primary btn-sm" (click)="print(tarea)">Print</button>
+              </td>
             </tr>
           </tbody>
         </table>
