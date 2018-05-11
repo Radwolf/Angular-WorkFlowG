@@ -8,12 +8,14 @@ import { TareaItemComponent } from './tarea-item/tarea-item.component';
 import { TareaService } from './shared/tarea.service';
 import { EstadoTareaPipe } from '../shared/pipes/estado-tarea.pipe';
 import { SharedPipesModule } from '../shared/pipes/shared-pipes.module';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   imports: [
     CommonModule,
     TareaRoutingModule,
-    SharedPipesModule
+    SharedPipesModule,
+    FormsModule
   ],
   providers: [TareaService],
   declarations: [TareaComponent, TareaListComponent, TareaItemComponent]
