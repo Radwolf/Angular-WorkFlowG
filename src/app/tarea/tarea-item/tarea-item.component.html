@@ -6,34 +6,52 @@
         Tarea
       </div>
       <div class="card-body">
-        <h5 class="card-title">{{tarea.codigo}}</h5>
-        <form novalidate role="form" #formTarea="ngForm">
+        <form role="form" [formGroup]="tareaForm">
           <div class="control-group row">
-            <div class="form-group col-6">
+            <div class="form-group col-2">
+              <label class="form-control-label" for="codigo">Código</label>
+              <input type="text" class="form-control" id="codigo" formControlName="codigo" name="codigo" placeholder="Código de la tarea">
+              <div *ngIf="tareaForm.controls.codigo.invalid && tareaForm.controls.codigo.touched" class="alert alert-danger">
+                La descripción es obligatoria
+              </div>
+            </div>
+            <div class="form-group col-4">
               <label class="form-control-label" for="descripcion">Descripción</label>
-              <input type="text" class="form-control" id="descripcion" [(ngModel)]="tarea.descripcion" 
-                #descripcion="ngModel" required
-                name="descripcion" placeholder="Descripción de la tarea">
-              <div *ngIf="descripcion.errors?.required && descripcion.touched" class="alert alert-danger">
+              <input type="text" class="form-control" id="descripcion" formControlName="descripcion" name="descripcion" placeholder="Descripción de la tarea">
+              <div *ngIf="tareaForm.controls.descripcion.invalid && tareaForm.controls.descripcion.touched" class="alert alert-danger">
                 La descripción es obligatoria
               </div>
             </div>
             <div class="form-group col-3">
-              <label class="form-control-label" for="aplicacion">Aplicación</label>
-              <input type="text" class="form-control" id="aplicacion" [(ngModel)]="tarea.aplicacion" name="aplicacion" placeholder="Aplicación">
+              <label class="form-control-label" for="tipo">Tipo</label>
+              <input type="text" class="form-control" id="tipo" formControlName="tipo" placeholder="Tipo de tarea">
             </div>
             <div class="form-group col-3">
-              <label class="form-control-label" for="despliegue">Despliegue</label>
-              <input type="text" class="form-control" id="despliegue" [(ngModel)]="tarea.despliegue" name="despliegue" placeholder="Despliegue">
+              <label class="form-control-label" for="aplicacion">Aplicación</label>
+              <input type="text" class="form-control" id="aplicacion" formControlName="aplicacion" name="aplicacion" placeholder="Aplicación">
             </div>
           </div>
           <div class="control-group row">
             <div class="form-group col-3">
-              <label class="form-control-label" for="estado">Estado</label>
-              <select id="estado" class="form-control" [(ngModel)]="tarea.estado" [ngModelOptions]="{standalone: true}">
-                <option [value]="'DES'">Desarrollo</option>
-                <option [value]="'PROD'">Producción</option>
-              </select>
+              <label class="form-control-label" for="despliegue">Despliegue</label>
+              <input type="text" class="form-control" id="despliegue" formControlName="despliegue" name="despliegue" placeholder="Despliegue">
+            </div>
+            <div class="form-group col-3">
+              <label class="form-control-label" for="fecha">Fecha</label>
+              <input type="text" class="form-control" id="fecha" formControlName="fecha" name="fecha" placeholder="Fecha despliegue">
+            </div>
+            <div class="form-group col-3">
+              <label class="form-control-label" for="usuario">Usuario</label>
+              <input type="text" class="form-control" id="usuario" formControlName="usuario" name="usuario" placeholder="Usuario">
+            </div>
+            <div class="control-group row">
+              <div class="form-group col-3">
+                <label class="form-control-label" for="estado">Estado</label>
+                <select id="estado" class="form-control" formControlName = "estado" [ngModelOptions]="{standalone: true}">
+                  <option [value]="'DES'">Desarrollo</option>
+                  <option [value]="'PROD'">Producción</option>
+                </select>
+              </div>
             </div>
           </div>
         </form>
@@ -41,9 +59,11 @@
       <div class="card-footer text-right">
         <button type="button" class="button btn btn-secondary" (click)="onReturn()">Volver</button>
         <button type="button" class="button btn btn-secondary" (click)="onNew()">Nuevo</button>
-        <button type="button" class="button btn btn-primary" [disabled]="formTarea.invalid" (click)="onSuccess()">Guardar</button>
+        <button type="button" class="button btn btn-primary" [disabled]="!tareaForm.valid" (click)="onSuccess()">Guardar</button>
       </div>
     </div>
   </div>
   <div class="col-0 col-xl-1"></div>
 </div>
+<pre>{{tareaForm.value | json}}</pre>
+<pre>{{tareaForm.valid | json}}</pre>

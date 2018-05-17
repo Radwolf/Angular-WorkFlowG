@@ -2,6 +2,7 @@ import { Component, OnInit, Input, EventEmitter, Output, OnChanges } from '@angu
 import { Tarea } from '../shared/tarea';
 import { TareaService } from '../shared/tarea.service';
 import { TareaId } from '../shared/tarea-id';
+import { FormGroup, FormControl, Validators } from '@angular/forms';
 
 @Component({
   selector: 'wfg-tarea-item',
@@ -12,13 +13,24 @@ export class TareaItemComponent implements OnInit {
 
   @Input() tarea: TareaId;
   @Output() notify: EventEmitter<Tarea> = new EventEmitter<Tarea>();
+  tareaForm: FormGroup;
 
   constructor(private tareaService: TareaService) { }
 
   ngOnInit() {
+    this.tareaForm = new FormGroup({
+      codigo: new FormControl('', Validators.required),
+      descripcion: new FormControl('', Validators.required),
+      aplicacion: new FormControl(''),
+      tipo: new FormControl(''),
+      estado: new FormControl(''),
+      fechaAlta: new FormControl(''),
+      usuario: new FormControl(''),
+      despliegue: new FormControl('')
+    });
   }
 
-  onSuccess(){
+  onSuccess() {
     console.log(this.tarea);
     const tareaSave: Tarea = {
       codigo: this.tarea.codigo,
@@ -32,13 +44,13 @@ export class TareaItemComponent implements OnInit {
     };
     if (this.tarea) {
       this.tareaService.updateTarea(this.tarea.id, tareaSave);
-    }else {
+    } else {
       this.tareaService.insertarTarea(tareaSave);
     }
     this.notify.emit(this.tarea);
   }
 
-  onReturn(){
+  onReturn() {
     this.notify.emit(this.tarea);
   }
 }
