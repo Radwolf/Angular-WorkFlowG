@@ -40,7 +40,7 @@
       </div>
       <div class="card-footer text-right">
         <button type="button" class="button btn btn-secondary" (click)="onReturn()">Volver</button>
-        <button type="button" class="button btn btn-secondary" (click)="onNew()">Nuevo</button>
+        <button type="button" class="button btn btn-secondary" (click)="formTarea.reset()">Nuevo</button>
         <button type="button" class="button btn btn-primary" [disabled]="formTarea.invalid" (click)="onSuccess()">Guardar</button>
       </div>
     </div>

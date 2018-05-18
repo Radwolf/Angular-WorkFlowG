@@ -12,7 +12,7 @@ import { Router } from '@angular/router';
 export class TareaListComponent implements OnInit, OnChanges, OnDestroy {
 
   obTareaService: any;
-  tareas: Tarea[];
+  tareas: TareaId[];
   @Output() notifyTarea: EventEmitter<Tarea> = new EventEmitter<Tarea>();
 
   constructor(private tareaService: TareaService, private router: Router) {
@@ -45,6 +45,6 @@ export class TareaListComponent implements OnInit, OnChanges, OnDestroy {
 
   ngOnDestroy(){
     console.log(`OnDestroy`);
-    this.obTareaService.unsubscribe();
+    //this.obTareaService.unsubscribe();
   }
 }

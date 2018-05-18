@@ -30,7 +30,7 @@ export class TareaItemComponent implements OnInit {
       usuario: this.tarea.usuario,
       despliegue: this.tarea.despliegue
     };
-    if (this.tarea) {
+    if (this.tarea.id) {
       this.tareaService.updateTarea(this.tarea.id, tareaSave);
     }else {
       this.tareaService.insertarTarea(tareaSave);

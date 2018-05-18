@@ -6,6 +6,7 @@ import { AngularFirestoreCollection, AngularFirestore, AngularFirestoreDocument 
 import { Tarea } from './tarea';
 import { Post } from './post';
 import { TAREAS } from './mock-tarea';
+import { TareaId } from './tarea-id';
 
 @Injectable({
   providedIn: 'root'
@@ -14,11 +15,10 @@ export class TareaService {
 
   tareasCollection: AngularFirestoreCollection<Tarea>;
   tareaDoc: AngularFirestoreDocument<Tarea>;
-  tareas: Observable<Tarea[]>;
+  tareas: Observable<TareaId[]>;
   readonly path = 'tarea';
 
   constructor(private afs: AngularFirestore, private http: HttpClient) { 
-    let uid = localStorage.getItem('uid');
     this.tareasCollection = this.afs.collection<Tarea>(this.path);
     //this.tareas = this.tareasCollection.valueChanges();
     this.tareas = this.tareasCollection.snapshotChanges().map(cambios => {
