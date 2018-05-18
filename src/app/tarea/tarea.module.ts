@@ -8,15 +8,16 @@ import { TareaItemComponent } from './tarea-item/tarea-item.component';
 import { TareaService } from './shared/tarea.service';
 import { EstadoTareaPipe } from '../shared/pipes/estado-tarea.pipe';
 import { SharedPipesModule } from '../shared/pipes/shared-pipes.module';
-import { FormsModule } from '@angular/forms';
+import { ReactiveFormsModule } from '@angular/forms';
 import { TareaPrintComponent } from './tarea-print/tarea-print.component';
 
+//Añadimos ReactiveFormsModule
 @NgModule({
   imports: [
     CommonModule,
     TareaRoutingModule,
     SharedPipesModule,
-    FormsModule
+    ReactiveFormsModule
   ],
   providers: [TareaService],
   declarations: [TareaComponent, TareaListComponent, TareaItemComponent, TareaPrintComponent]
