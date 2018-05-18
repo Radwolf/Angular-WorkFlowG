@@ -32,6 +32,9 @@ export class TareaListComponent implements OnInit, OnChanges, OnDestroy {
 
   ngOnChanges() {
     console.log(`OnChanges`);
+    this.obTareaService = this.tareaService.getTareasFb().subscribe(tareas => {
+      this.tareas = tareas;
+    });
   }
 
   onSelect(tarea: Tarea){
@@ -45,6 +48,6 @@ export class TareaListComponent implements OnInit, OnChanges, OnDestroy {
 
   ngOnDestroy(){
     console.log(`OnDestroy`);
-    //this.obTareaService.unsubscribe();
+    this.obTareaService.unsubscribe();
   }
 }
