@@ -6,9 +6,6 @@ import { AppComponent } from './app.component';
 import { NavbarComponent } from './shared/components/navbar/navbar.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { AppRoutingModule } from './/app-routing.module';
-import { AngularFireModule } from 'angularfire2';
-import { environment } from '../environments/environment';
-import { AngularFirestore } from 'angularfire2/firestore';
 import { SharedPipesModule } from './shared/pipes/shared-pipes.module';
 
 @NgModule({
@@ -21,10 +18,9 @@ import { SharedPipesModule } from './shared/pipes/shared-pipes.module';
     NgbModule.forRoot(),
     AppRoutingModule,
     HttpClientModule,
-    AngularFireModule.initializeApp(environment.firebase),
     SharedPipesModule
   ],
-  providers: [AngularFirestore],
+  providers: [],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -17,7 +17,7 @@ export class TareaPrintComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
     this.params = this.activatedRoute.params.subscribe(params => this.id = params['id']);
-    this.tareaService.getTarea(this.id).subscribe((tarea: Tarea) => {
+    this.tareaService.getTareaHttp(this.id).subscribe((tarea: Tarea) => {
       this.tarea = tarea;
     });
   }

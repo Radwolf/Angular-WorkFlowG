@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';
 import { Routes, RouterModule } from '@angular/router';
 
 const routes: Routes = [
-  { path: '', loadChildren: './tarea/tarea.module#TareaModule' },
+  { path: '', loadChildren: './tarea/tarea.module#TareaModule', },
   { path: 'about', loadChildren: './about/about.module#AboutModule' }
 ]
 

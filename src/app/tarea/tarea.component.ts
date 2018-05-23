@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Tarea } from './shared/tarea';
+import { TareaId } from './shared/tarea-id';
 
 @Component({
   selector: 'wfg-tarea',
@@ -9,6 +10,7 @@ import { Tarea } from './shared/tarea';
 export class TareaComponent implements OnInit {
 
   tarea: Tarea;
+  tareas: TareaId[];
 
   constructor() { }
 
@@ -19,8 +21,8 @@ export class TareaComponent implements OnInit {
     this.tarea = tarea;
   }
 
-  mostrarSuccess(tarea: Tarea){
-    console.log(`Tarea ${tarea.codigo} registrada`);
+  cargarTareas(tareas: TareaId[]){
+    this.tareas = tareas;
     this.tarea = null;
   }
 }

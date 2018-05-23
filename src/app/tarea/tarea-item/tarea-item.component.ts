@@ -12,7 +12,7 @@ import { FormGroup, FormControl, Validators } from '@angular/forms';
 export class TareaItemComponent implements OnInit, OnChanges {
 
   @Input() tarea: TareaId;
-  @Output() notify: EventEmitter<Tarea> = new EventEmitter<Tarea>();
+  @Output() notify: EventEmitter<Tarea []> = new EventEmitter<Tarea []>();
   tareaForm: FormGroup;
   estados = [
     {label: "Desarrollo", value: "DES"},
@@ -68,11 +68,14 @@ export class TareaItemComponent implements OnInit, OnChanges {
     };
 
     if (this.tarea.id) {
-      this.tareaService.updateTarea(this.tarea.id, tareaSave);
+      this.tareaService.updateTareaHttp(this.tarea.id, tareaSave).subscribe((tareas: Tarea[]) => {
+        this.notify.emit(tareas);
+      });
     } else {
-      this.tareaService.insertarTarea(tareaSave);
+      this.tareaService.insertarTareaHttp(tareaSave).subscribe((tareas: Tarea[]) => {
+        this.notify.emit(tareas);
+      });
     }
-    this.notify.emit(this.tarea);
   }
 
   onNew(){
@@ -80,6 +83,6 @@ export class TareaItemComponent implements OnInit, OnChanges {
     this.tareaForm.reset();
   }
   onReturn() {
-    this.notify.emit(this.tarea);
+    this.notify.emit(null);
   }
 }
