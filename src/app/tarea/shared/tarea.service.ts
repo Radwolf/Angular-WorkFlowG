@@ -15,7 +15,7 @@ export class TareaService {
   }
 
   getTareasHttp() {
-    return this.http.get('http://localhost:9000/tareas');
+    return this.http.get<Tarea[]>('/api/tareas');
   }
 
   getTareas() {
@@ -23,15 +23,15 @@ export class TareaService {
   }
 
   getTareaHttp(id: string) {
-    return this.http.get(`http://localhost:9000/tarea/${id}`);
+    return this.http.get<Tarea>(`/api/tareas/${id}`);
   }
 
   insertarTareaHttp(tarea: Tarea) {
-    return this.http.post(`http://localhost:9000/tarea`, tarea);
+    return this.http.post(`/api/tareas`, tarea);
   }
 
   updateTareaHttp(id: string, tarea: Tarea) {
-    return this.http.put(`http://localhost:9000/tarea/${id}`, tarea);
+    return this.http.put(`/api/tareas/${id}`, tarea);
   }
 
 }
