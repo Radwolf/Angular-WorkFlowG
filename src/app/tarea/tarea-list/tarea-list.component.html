@@ -31,7 +31,8 @@
               <td (click)="onSelect(tarea)">{{tarea.usuario}}</td>
               <td (click)="onSelect(tarea)">{{tarea.despliegue}}</td>
               <td>
-                <button type="button" class="btn btn-primary btn-sm" (click)="print(tarea)">Print</button>
+                <button type="button" class="button btn btn-primary btn-sm" (click)="print(tarea)">Print</button>
+                <button type="button" class="button btn btn-secondary btn-sm" (click)="onDelete(tarea)">Delete</button>
               </td>
             </tr>
           </tbody>

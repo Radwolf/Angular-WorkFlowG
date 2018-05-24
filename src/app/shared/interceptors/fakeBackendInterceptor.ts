@@ -53,15 +53,19 @@ export class FakeBackendInterceptor implements HttpInterceptor {
             if (request.url.endsWith('/api/tareas') && request.method === 'POST') {
                 // get new tarea object from post body
                 let newTarea = request.body;
- 
+                let autoId = parseInt(localStorage.getItem('autoId')) | 0;
+
                 // validation
-                let duplicateTarea = tareas.filter(tarea => { return tarea.codigo === newTarea.codigo; }).length;
+                let duplicateTarea = tareas.filter(tarea => { return tarea.id === newTarea.id; }).length;
                 if (duplicateTarea) {
                     return Observable.throw('La Tarea "' + newTarea.codigo + '" ya existe');
                 }
  
                 // save new user
-                newTarea.id = tareas.length + 1;
+                let newId =  (autoId + 1) + "";
+                localStorage.setItem('autoId', newId);
+                newTarea.id = newId;
+                
                 tareas.push(newTarea);
                 localStorage.setItem('tareas', JSON.stringify(tareas));
  
@@ -69,6 +73,31 @@ export class FakeBackendInterceptor implements HttpInterceptor {
                 return Observable.of(new HttpResponse({ status: 200 }));
             }
  
+            // update tarea
+            if (request.url.match(/\/api\/tareas\/\d+$/) && request.method === 'PUT') {
+                // get new tarea object from post body
+                let updateTarea = request.body;
+                let urlParts = request.url.split('/');
+                var id = urlParts[urlParts.length - 1];
+                tareas.forEach((tarea: TareaId) => {
+                    if(tarea.id  === id){
+                        tarea.codigo = updateTarea.codigo;
+                        tarea.descripcion = updateTarea.descripcion;
+                        tarea.aplicacion = updateTarea.aplicacion;
+                        tarea.despliegue = updateTarea.despliegue;
+                        tarea.estado = updateTarea.estado;
+                        tarea.fechaAlta = updateTarea.fechaAlta;
+                        tarea.tipo = updateTarea.tipo;
+                        tarea.usuario = updateTarea.usuario;
+                    }
+                }, id);
+
+                localStorage.setItem('tareas', JSON.stringify(tareas));
+    
+                // respond 200 OK
+                return Observable.of(new HttpResponse({ status: 200 }));
+            }
+
             // delete user
             if (request.url.match(/\/api\/tareas\/\d+$/) && request.method === 'DELETE') {
                 // check for fake auth token in header and return tarea if valid, this security is implemented server side in a real application
@@ -87,7 +116,7 @@ export class FakeBackendInterceptor implements HttpInterceptor {
                     }
  
                     // respond 200 OK
-                    return Observable.of(new HttpResponse({ status: 200 }));
+                    return Observable.of(new HttpResponse({ status: 200, body: tareas }));
                 /*} else {
                     // return 401 not authorised if token is null or invalid
                     return Observable.throw('Unauthorised');

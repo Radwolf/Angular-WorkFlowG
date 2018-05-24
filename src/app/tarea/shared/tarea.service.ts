@@ -34,4 +34,7 @@ export class TareaService {
     return this.http.put(`/api/tareas/${id}`, tarea);
   }
 
+  deleteTareaHttp(id: string){
+    return this.http.delete(`/api/tareas/${id}`);
+  }
 }

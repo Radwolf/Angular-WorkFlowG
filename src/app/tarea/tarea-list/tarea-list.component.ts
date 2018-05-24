@@ -43,6 +43,12 @@ export class TareaListComponent implements OnInit, OnChanges, OnDestroy {
     this.notifyTarea.emit(new Tarea());
   }
 
+  onDelete(tarea: TareaId){
+    this.tareaService.deleteTareaHttp(tarea.id).subscribe((tareas: TareaId[]) => {
+      this.tareas = tareas;
+    });
+  }
+
   print(tarea: TareaId){
     console.log(tarea.id);
     this.router.navigate([`tarea/print/${tarea.id}`]);
